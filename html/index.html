@@ -10,6 +10,18 @@
     <body>
         
     </body>
-    <script>
-    </script>
+    <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
+
+        const firebaseConfig = {
+        apiKey: "AIzaSyCElb1mV5TUv5rej1WSKMvWRue-EgjN1js",
+        authDomain: "konyvtarprojekt.firebaseapp.com",
+        projectId: "konyvtarprojekt",
+        storageBucket: "konyvtarprojekt.appspot.com",
+        messagingSenderId: "525059241966",
+        appId: "1:525059241966:web:ddace663b3fc8e6d5580ff"
+        };
+    
+        const app = initializeApp(firebaseConfig);
+  </script>
 </html>
