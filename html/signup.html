@@ -5,31 +5,31 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
-        <link rel="stylesheet" href="../css/loginSignup.css">
-        <title>Könyvtár Projekt</title>
+        <link rel="stylesheet" href="/css/loginSignup.css">
+        <title>Regisztráció - Könyvtár Projekt</title>
     </head>
     <body class="bg-light">
         <div class="d-flex justify-content-center align-items-center p-2" style="min-height: 100vh;">
             <div class="box d-flex flex-column justify-content-center align-items-center text-center rounded">
-                <h2 class="mb-2 text-dark">Bejelentkezés</h2>
-                <form id="bejelentkezesurlap" class="d-flex flex-column w-100 p-4 mt-2">
+                <h2 class="mb-2 text-dark">Regisztráció</h2>
+                <form id="regisztraciosurlap" class="d-flex flex-column w-100 p-4 mt-2">
                     <div class="form-floating mb-4">
                         <input type="email" class="form-control" id="email" placeholder="E-mail cím" required>
                         <label for="email">E-mail cím</label>
                     </div>
                     <div class="form-floating mb-4">
-                        <input type="password" class="form-control" id="pass" placeholder="Password"  reqiured>
+                        <input type="password" class="form-control" id="pass" placeholder="Jelszó" reqiured>
                         <label for="pass">Jelszó</label>
                     </div>
-                    <button type="submit" class="btn btn-primary align-self-center">Bejelentkezés</button>
-                    <small class="mt-5  text-dark"><i>Nincs még fiókod? </i><a class="fw-bold text-decoration-none" href="login.html">Regisztrálj itt</a></small>
+                    <button type="submit" class="btn btn-primary align-self-center">Regisztrálás</button>
+                    <small class="mt-5  text-dark"><i>Rendelkezel fiókkal? </i><a class="fw-bold text-decoration-none" href="login.html">Jelentezz be</a></small>
                 </form>
             </div>
         </div>
     </body>
     <script type="module">
         import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
-        import { getAuth, signInWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-auth.js";
+        import { getAuth, createUserWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-auth.js";
 
         const firebaseConfig = {
         apiKey: "AIzaSyCElb1mV5TUv5rej1WSKMvWRue-EgjN1js",
@@ -42,26 +42,24 @@
     
         const app = initializeApp(firebaseConfig);
         const auth = getAuth(app);
+        const regisztraciosurlap = document.getElementById("regisztraciosurlap")
 
-        const emailIn = document.getElementById("email");
-        const passwordIn = document.getElementById("pass");
-
-        document.getElementById("bejelentkezesurlap").addEventListener("submit", function (event) {
+        regisztraciosurlap.addEventListener('submit', function (event) {
             event.preventDefault();
 
-            const email = emailIn.value;
-            const password = passwordIn.value;
+            const userEmail = document.getElementById("email").value;
+            const userPassword = document.getElementById("pass").value;
 
-            signInWithEmailAndPassword(auth, email, password)
+            createUserWithEmailAndPassword(auth, userEmail, userPassword)
                 .then(function (userCredential) {
                     var user = userCredential.user;
-                    console.log("Sikeres bejelentkezés: ", user);
                     window.location.href = "index.html";
+                    console.log("Sikeres regisztráció: " + user);
                 })
                 .catch(function (error) {
                     var errorCode = error.code;
                     var errorMessage = error.message;
-                    console.error("Bejelentkezési hiba: ", errorCode, errorMessage);
+                    console.error('Regisztrációs hiba: ', errorCode, errorMessage);
                 });
         });
   </script>
