@@ -1,0 +1,12 @@
+.box{
+    min-width: 25rem;
+    width: 40rem;
+    height: 25rem;
+
+    background: rgba(131, 131, 131, 0.28);
+    border-radius: 20px;
+    box-shadow: 0 10px 30px rgba(99, 99, 99, 0.1);
+    backdrop-filter: blur(5px);
+    -webkit-backdrop-filter: blur(5px);
+    border: 1px solid rgba(124, 124, 124, 0.8);
+}
